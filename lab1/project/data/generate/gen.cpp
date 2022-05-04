@@ -59,6 +59,6 @@ int main(int argc, char* argv[]){
   // 分别生成正确性测试数据和性能测试数据
   gen("../samples/data.in", samples);
   gen("../test/data.in", tests);
-  
+
   return 0;
 }
