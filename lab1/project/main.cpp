@@ -29,6 +29,7 @@ int main(){
 			break;
 		}
 		getchar();
+		if(opt != 1 && opt != 2) break;
 		do {
 			cout << "Please enter Enter to continue";
 			if(getchar() == 10) break;	
