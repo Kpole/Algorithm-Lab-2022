@@ -16,6 +16,7 @@ string END = "\033[0m";
 
 string test_input_file = "../data/test/data.in";
 
+// 时间类，用于测试程序运行时间
 class Timer {
 public:
 	Timer() : start_(), end_() {}
@@ -74,13 +75,14 @@ void test(MySort* mysort) {
 	}
 	if(succ_cnt != test_groups) {
 		cout << "The percentage of successful samples: " << succ_cnt << "/" << test_groups << endl;
+	} else {
+		cout << GREEN << "Congratulation, you have passed all test cases!" << END << endl << endl;
 	}
-	cout << GREEN << "Congratulation, you have passed all test cases!" << END << endl << endl;
 }
 
 int main() {
-	test(new MergeSort());
+	// 分别对两种排序算法进行测试
 	test(new InsertionSort());
-
+	test(new MergeSort());
 	return 0;
 }

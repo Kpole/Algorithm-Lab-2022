@@ -1,3 +1,6 @@
+/*
+随机数据生成器
+*/
 #include <iostream>
 #include <array>
 #include <fstream>
@@ -5,6 +8,7 @@
 using namespace std;
 
 
+// 正确性测试数据规模，每一项分别为数组大小，元素下界，元素上界
 vector<tuple<int, int, int>> samples {
   {5, 0, 10},
   {10, 0, 10},
@@ -18,6 +22,7 @@ vector<tuple<int, int, int>> samples {
   {10000, INT_MIN, INT_MAX}
 };
 
+// 性能测试数据规模，每一项分别为数组大小，元素下界，元素上界
 vector<tuple<int, int, int>> tests {
   {10, INT_MIN, INT_MAX},
   {100, INT_MIN, INT_MAX},
@@ -51,6 +56,7 @@ void gen(string path, vector<tuple<int,int,int>>& data_limits) {
 int main(int argc, char* argv[]){
   registerGen(argc, argv, 1);
 
+  // 分别生成正确性测试数据和性能测试数据
   gen("../samples/data.in", samples);
   gen("../test/data.in", tests);
   
