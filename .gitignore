@@ -1,4 +1,8 @@
-**/*.exe
-实验环境附件/*
-.DS_Store
-*/.DS_Store
+*
+
+!.cpp
+!.hpp
+!.h
+!.in
+
+!.md
