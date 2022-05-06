@@ -5,6 +5,7 @@
 #include <vector>
 #include <string>
 #include <functional>
+#include <algorithm>
 
 
 class MySort {

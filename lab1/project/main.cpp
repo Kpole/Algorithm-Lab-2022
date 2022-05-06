@@ -1,6 +1,6 @@
 #include <iostream>
 #include "include/MergeSort.hpp"
-#include "include/InSertionSort.hpp"
+#include "include/InsertionSort.hpp"
 using namespace std;
 
 
