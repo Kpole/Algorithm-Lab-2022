@@ -1,8 +1,4 @@
-*
-
-!.cpp
-!.hpp
-!.h
-!.in
-
-!.md
+.vscode
+*.pdf
+*.zip
+*.exe

@@ -1,6 +1,6 @@
 #include <iostream>
 #include "include/MergeSort.hpp"
-#include "include/InSertionSort.hpp"
+#include "include/InsertionSort.hpp"
 using namespace std;
 
 
@@ -10,8 +10,8 @@ int main(){
   InsertionSort my_insertion_sort;
   bool loop = true;
 	while (loop) {
-    	cout << endl;
-    	cout << "Select a Sort Algorithm to Test Run: " << endl;
+		cout << endl;
+		cout << "Select a Sort Algorithm to Test Run: " << endl;
 		cout << "1.Insertion Sort" << endl;
 		cout << "2.Merge Sort" << endl;
 		cout << "others to exit" << endl;
