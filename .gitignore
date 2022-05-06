@@ -1,8 +1,8 @@
-*
-
+/*
+!.gitignore
+!*.pdf
 !.cpp
 !.hpp
 !.h
 !.in
-
 !.md
