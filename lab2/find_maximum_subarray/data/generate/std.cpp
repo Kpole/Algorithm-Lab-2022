@@ -9,7 +9,7 @@ int main(){
   int T; cin >> T;
   while(T--){
     int n; cin >> n;
-    ll sum = 0, rs = 0;
+    ll sum = 0, rs = LLONG_MIN;
     for(int i = 1; i <= n; i++){
       cin >> a[i];
       sum = max(sum + a[i], a[i]);

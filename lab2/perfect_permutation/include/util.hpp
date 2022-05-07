@@ -38,14 +38,15 @@ string to_string(bool b) {
 
 template <typename A>
 string to_string(A v) {
-    if(v.size() > 100) {
-      return END +  "[hidden] data is too long" + BLUE;
+    if(v.size() > 20) {
+        return END +  "[hidden] data is too long" + BLUE;
     }
     bool first = true;
     string res = "[";
     for (const auto &x : v) {
         if (!first) {
             res += ", ";
+            if(typeid(x) == typeid(vector<int>)) res += "\n";
         }
         first = false;
         res += to_string(x);
