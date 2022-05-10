@@ -5,7 +5,7 @@
 #include <vector>
 #include <string>
 #include <functional>
-
+#include <algorithm>
 // #include "util.h"
 
 class MySort {
