@@ -1,6 +1,6 @@
 #include <iostream>
 #include "include/MergeSort.hpp"
-#include "include/InSertionSort.hpp"
+#include "include/InsertionSort.hpp"
 using namespace std;
 int main(){
   MergeSort my_merge_sort;
@@ -8,8 +8,8 @@ int main(){
   bool loop = true;
   vector<int> vec{6,1,2,3,4,5};
 	while (loop) {
-    cout << endl;
-    cout << "Select a Sort Algorithm to Test Run: " << endl;
+		cout << endl;
+		cout << "Select a Sort Algorithm to Test Run: " << endl;
 		cout << "1.Insertion Sort" << endl;
 		cout << "2.Merge Sort" << endl;
 		cout << "3.Get reverse sort pair number"<<endl;
@@ -32,6 +32,7 @@ int main(){
 			break;
 		}
 		getchar();
+		if(opt != 1 && opt != 2) break;
 		do {
 			cout << "Please enter Enter to continue <<endl << Please enter \'q\' to quit";
 			char f = getchar();

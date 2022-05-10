@@ -7,7 +7,6 @@
 #include <functional>
 #include <algorithm>
 // #include "util.h"
-
 class MySort {
 public:
 	// 样例数据文件所在位置
@@ -25,7 +24,7 @@ public:
 			std::cout << "open input_file failed" << std::endl;
 			return;
 		}
-
+		
 		// data.in 中第一行为测试数据组数
 		// 每一组测试数据，第一行为数组长度，第二行为数组元素
 		

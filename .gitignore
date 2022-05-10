@@ -1,8 +1,14 @@
 *
 
-!.cpp
-!.hpp
-!.h
-!.in
+!/lab1/
+!/lab1/**/
+!/lab2/
+!/lab2/**/
 
-!.md
+
+!*.cpp
+!*.hpp
+!*.h
+!*.pdf
+!*.in
+!*.out
