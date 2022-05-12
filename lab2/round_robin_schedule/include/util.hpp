@@ -2,10 +2,10 @@
 #include <fstream>
 #include <string>
 #include <vector>
-
+#include <algorithm>
+#include <assert.h>
 
 using namespace std;
-
 
 string RED = "\033[1;31m";
 string GREEN = "\033[1;32m";
