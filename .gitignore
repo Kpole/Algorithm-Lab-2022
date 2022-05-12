@@ -4,8 +4,11 @@
 !/lab1/**/
 !/lab2/
 !/lab2/**/
+!/lab2_answer/
+!/lab2_answer/**/
 !/lab3/
 !/lab3/**/
+
 
 
 !*.cpp
