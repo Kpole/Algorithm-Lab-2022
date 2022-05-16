@@ -8,14 +8,19 @@ int main(){
   ios::sync_with_stdio(false); cin.tie(nullptr);
   int T; cin >> T;
   while(T--){
-    int n; cin >> n;
-    ll sum = 0, rs = LLONG_MIN;
+    string s, t;
+    cin >> s >> t;
+    int n = s.size(), m = t.size();
+    vector<int> d(m + 1);
+    auto f = d;
     for(int i = 1; i <= n; i++){
-      cin >> a[i];
-      sum = max(sum + a[i], a[i]);
-      rs = max(rs, sum);
+      for(int j = 1; j <= m; j++){
+        f[j] = max(f[j - 1], d[j]);
+        if(s[i - 1] == t[j - 1]) f[j] = max(f[j], d[j - 1] + 1);
+      }
+      d = f;
     }
-    cout << rs << "\n";
+    cout << d[m] << "\n";
   }
   return 0;
 }

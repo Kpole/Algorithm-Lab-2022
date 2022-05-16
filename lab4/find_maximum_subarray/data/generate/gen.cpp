@@ -23,7 +23,7 @@ vector<tuple<int, int, int>> tests {
   {5000, -500, 1000},
   {10000, -500, 1000},
   {50000, -500, 1000},
-  {100000, -5000, 10000}
+  {100000, -1E5, 1E9}
 };
 
 void gen(string path, vector<tuple<int,int,int>>& data_limits) {
