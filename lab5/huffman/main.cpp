@@ -16,13 +16,13 @@ struct TreeNode {
     // 用symbol和freq构造
     TreeNode(char symbol_, double freq_)
         : symbol(symbol_), freq(freq_), left(NULL), right(NULL) {}
-    // 比较哪个节点的频率更高
+    // 优先级比较
     bool operator()(const TreeNode* lhs, const TreeNode* rhs) {
         return lhs->freq > rhs->freq;
     }
 };
 
-TreeNode* Huffman(vector<TreeNode*>& C) {
+TreeNode* huffman(vector<TreeNode*>& C) {
     int n = C.size();
     // 创建一个最小堆
     priority_queue<TreeNode*, vector<TreeNode*>, TreeNode> Q;
@@ -30,11 +30,11 @@ TreeNode* Huffman(vector<TreeNode*>& C) {
     for (int i = 0; i < n; i++) {
         Q.push(C[i]);
     }
-    int freq1=0;
-    int freq2=0;
-    int sumfreq=0;
-    char tempsymbol;
+    double freq1=0;
+    double freq2=0;
+    double sumfreq=0;
     
+
     while(Q.size()>=2) {
         TreeNode *root1=new TreeNode();
         freq1=Q.top()->freq;
@@ -52,67 +52,66 @@ TreeNode* Huffman(vector<TreeNode*>& C) {
     return Q.top();
 }
 
-void OutputAllSymbolCode(TreeNode* root, string code = "") {
+
+// 输出每个叶子节点的哈夫曼编码
+void out_symbol_code(TreeNode* root, string code = "") {
     if (root == NULL)
         return;
     if (root->left == NULL && root->right == NULL) {
         cout << root->symbol << ":" << code << endl;
     }
     if (root->left != NULL) {
-        OutputAllSymbolCode(root->left, code + '0');  // 左节点编码加0
+        out_sample_code(root->left, code + '0');  // 左节点编码加0
     }
     if (root->right != NULL)
     {
-        OutputAllSymbolCode(root->right, code + '1'); // 右节点编码加1
+        out_sample_code(root->right, code + '1'); // 右节点编码加1
     }
 }
 
-void printTree(TreeNode* root){
-    if (root == NULL)
+// 递归打印树结构
+void print_tree(TreeNode* node, string prefix = "", bool isLeft = true) {
+    if (node == nullptr) {
+        cout << "Empty tree";
         return;
-    if (root->symbol!=' ') {
-        cout << root->symbol  << endl;
     }
-    else{
-        cout<<root->freq<<endl;
+
+    if(node->right) {
+        print_tree(node->right, prefix + (isLeft ? "|     " : "      "), false);
     }
-    if (root->left != NULL) {
-        printTree(root->left);  // 左节点编码加0
-    }
-    if (root->right != NULL)
-    {
-        printTree(root->right); // 右节点编码加1
+
+    cout << prefix + (isLeft ? "|-----" : "|-----") + (node->symbol == ' ' ? to_string(node->freq) : string("") + node->symbol + "(" + to_string(node->freq) + ")") + "\n";
+
+    if (node->left) {
+        print_tree(node->left, prefix + (isLeft ? "      " : "|     "), true);
     }
 }
+
 // 销毁树
-void Destory(TreeNode* root) {
+void destory(TreeNode* root) {
     if (root == NULL)
         return;
-    Destory(root->left);
-    Destory(root->right);
+    destory(root->left);
+    destory(root->right);
     delete root;
 }
 
-TreeNode* Huffman(string symbols, vector<double> freqs) {
+TreeNode* huffman(string symbols, vector<double> freqs) {
     vector<TreeNode *> C;
     for (size_t i = 0; i < freqs.size(); i++) {
         C.push_back(new TreeNode(symbols[i], freqs[i]));
     }
-    return Huffman(C);
+    return huffman(C);
 }
 
 int main() {
     string symbols = "ABCDEFGHIJKL";
     vector<double> freqs = { 10.1, 8, 18, 11.1, 6.6, 1.2, 4.4, 9.2, 13.5, 2.1, 10.3, 5.5 };
-    // string symbols = "abcde";
-    
-   //  vector<double> freqs = {1, 2, 3, 4, 5};
 
-    TreeNode *root = Huffman(symbols, freqs);
-    printTree(root);
-    OutputAllSymbolCode(root);
+    TreeNode *root = huffman(symbols, freqs);
+    print_tree(root);
+    out_symbol_code(root);
     
-    Destory(root);
-    Pause();
+    destory(root);
     return 0;
 }
