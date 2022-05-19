@@ -17,7 +17,7 @@ struct TreeNode {
     TreeNode(char symbol_, double freq_)
         : symbol(symbol_), freq(freq_), left(NULL), right(NULL) {}
     // 优先级比较
-    bool operator()(const TreeNode* lhs, const TreeNode* rhs) {
+    bool operator < (const TreeNode* lhs, const TreeNode* rhs) {
         return lhs->freq > rhs->freq;
     }
 };
@@ -25,6 +25,8 @@ struct TreeNode {
 TreeNode* huffman(vector<TreeNode*>& C) {
     int n = C.size();
     // 创建一个最小堆
+    // Q.push(x) 表示将 x 入堆
+    // TreeNode* p = Q.top() 表示取出堆顶
     priority_queue<TreeNode*, vector<TreeNode*>, TreeNode> Q;
     // 把C放入Q中
     for (int i = 0; i < n; i++) {
@@ -61,12 +63,18 @@ void out_symbol_code(TreeNode* root, string code = "") {
         cout << root->symbol << ":" << code << endl;
     }
     if (root->left != NULL) {
-        out_sample_code(root->left, code + '0');  // 左节点编码加0
+        out_symbol_code(root->left, code + '0');  // 左节点编码加0
     }
     if (root->right != NULL)
     {
-        out_sample_code(root->right, code + '1'); // 右节点编码加1
+        out_symbol_code(root->right, code + '1'); // 右节点编码加1
     }
+}
+
+string double_to_string(double x) {
+  char s[20];
+  sprintf(s, "%.2f", x);
+  return string(s);
 }
 
 // 递归打印树结构
@@ -80,7 +88,7 @@ void print_tree(TreeNode* node, string prefix = "", bool isLeft = true) {
         print_tree(node->right, prefix + (isLeft ? "|     " : "      "), false);
     }
 
-    cout << prefix + (isLeft ? "|-----" : "|-----") + (node->symbol == ' ' ? to_string(node->freq) : string("") + node->symbol + "(" + to_string(node->freq) + ")") + "\n";
+    cout << prefix + (isLeft ? "|-----" : "|-----") + (node->symbol == ' ' ? double_to_string(node->freq) : string("") + node->symbol + "(" + double_to_string(node->freq) + ")") + "\n";
 
     if (node->left) {
         print_tree(node->left, prefix + (isLeft ? "      " : "|     "), true);
