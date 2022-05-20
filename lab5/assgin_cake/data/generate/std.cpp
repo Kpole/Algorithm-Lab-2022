@@ -8,26 +8,24 @@ int main(){
   ios::sync_with_stdio(false); cin.tie(nullptr);
   int T; cin >> T;
   while(T--){
-    int n, m, p;
-    cin >> n >> m >> p;
-    vector<int> a(n), b(m), c(p);
+    int n, m;
+    cin >> n >> m;
+    vector<int> a(n), b(m);
     for(int i = 0; i < n; i++) cin >> a[i];
-    for(int j = 0; j < m; j++) cin >> b[j];
-    for(int i = 0; i < p; i++) cin >> c[i];
+    for(int i = 0; i < m; i++) cin >> b[i];
     sort(a.begin(), a.end());
     sort(b.begin(), b.end());
-    vector<vector<int>> rs;
-    for(int k = 0; k < p; k++){
-      for(int i = 0, j = m - 1; i < n && j >= 0; i ++) {
-        while(j >= 0 && a[i] + b[j] > c[k]) j --;
-        if(j >= 0 && a[i] + b[j] == c[k]) rs.push_back({a[i], b[j], c[k]});
+    int rs = 0;
+    for(int i = 0, j = 0; i < n; i++){
+      while(j < m && b[j] < a[i]) j ++;
+      if(j < m) {
+        rs ++;
+        j ++;
+      } else {
+        break;
       }
     }
-
-    cout << rs.size() << "\n";
-    for(auto &v : rs) {
-      cout << v[0] << ' ' << v[1] << ' ' << v[2] << "\n";
-    }
+    cout << rs << endl;
   }
   return 0;
 }
