@@ -23,8 +23,8 @@ int main(){
       ifs >> nums[i];
     }
     Solution sol;
-    int res = sol.find_maximum_subarray(nums);
-    int ans; ofs >> ans;
+    long long res = sol.find_maximum_subarray(nums);
+    long long ans; ofs >> ans;
     if(compare_result("Sample Test Round " + to_string(t), res, ans)) {
       succ_cnt ++;
     }
