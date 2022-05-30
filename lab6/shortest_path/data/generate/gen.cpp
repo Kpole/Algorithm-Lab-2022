@@ -14,9 +14,21 @@ using namespace std;
 
 // n, m, limit, 伸展度
 vector<tuple<int, int, int, int>> tests {
-  {5, 7, 10, 0},
-  {5, 6, 20, 1}
-  
+  {5, 7, 20, 5},
+  {15, 25, 50, 3},
+  {30, 100, 50, 3},
+  {50, 100, 100, 5},
+  {100, 300, 1000, 5},
+  {200, 500, 1000, 5},
+  {300, 600, 1000, 5},
+  {500, 499, 1000, 5},
+  {500, 550, 1000, 5},
+  {1000, 1500, 1000, 5},
+  {1000, 999, 1000, 10},
+  {1000, 2000, 1E9, 10},
+  {1000, 2500, 1E9, 10},
+  {1000, 10000, 1E9, 10},
+  {1000, 1E5, 1E9, 10},
 };
 
 vector<int> gen_unique_rand(int n, int l, int r) {
@@ -40,6 +52,9 @@ void gen(string path, vector<tuple<int,int,int,int>>& data_limits) {
     auto &[n, m, M, P] = data_limits[t];
     ifs << n << ' ' << m << "\n";
     assert(m >= n - 1);
+    assert(m <= n * (n - 1) / 2);
+    assert(n >= 1);
+    assert(n <= 2000);
     map<pair<int, int>, int> mp;
     vector<vector<int>> edges;
     for(int i = 2; i <= n; i++) {

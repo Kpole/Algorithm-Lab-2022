@@ -16,27 +16,19 @@ void test() {
   ifs >> T;
   cout << "Total number of sample tests: "<< T << endl;
   for(int t = 1; t <= T; t ++){
-    int n, m, p;
-    ifs >> n >> m >> p;
-    vector<int> a(n), b(m), c(p);
-    for(int i = 0; i < n; i++) ifs >> a[i];
-    for(int i = 0; i < m; i++) ifs >> b[i];
-    for(int i = 0; i < p; i++) ifs >> c[i];
-
-    Solution sol;
-    auto ans = sol.three_sum(a, b, c);
-
-    vector<vector<int>> res;
-    int sz = 0; 
-    ofs >> sz;
-
-    for(int i = 0; i < sz; i++){
-      int x, y, z; ofs >> x >> y >> z;
-      res.push_back({x, y, z});
+    int n, m;
+    ifs >> n >> m;
+    vector<vector<int>> e;
+    for(int i = 0; i < m; i++) {
+      int u, v, w;
+      ifs >> u >> v >> w;
+      e.push_back({u, v, w});
     }
 
-    sort(ans.begin(), ans.end());
-    sort(res.begin(), res.end());
+    Solution sol;
+    auto res = sol.shortest_path(n, e);
+    long long ans = 0;
+    ofs >> ans;
     
     if(compare_result("Sample Test Round " + to_string(t), res, ans)) {
       succ_cnt ++;

@@ -4,7 +4,7 @@
 
 class Solution {
 public:
-  long long minimum_spanning_tree(int n, vector<vector<int>> edges) {
+  long long minimum_spanning_tree(int n, vector<vector<int>> edges){
     using ll = long long;
     vector<vector<pair<int, int>>> e(n + 1);
     vector<int> d(n + 1, INT_MAX), v(n + 1);
