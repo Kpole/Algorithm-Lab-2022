@@ -38,7 +38,7 @@ void test() {
     sort(ans.begin(), ans.end());
     sort(res.begin(), res.end());
     
-    if(compare_result("Sample Test Round " + to_string(t), res, ans)) {
+    if(compare_result("Sample Test Round " + to_string(t), ans, res)) {
       succ_cnt ++;
     }
   }
