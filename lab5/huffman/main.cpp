@@ -7,7 +7,7 @@ TreeNode* huffman(vector<TreeNode*>& tree) {
     int n = tree.size();
     // 创建一个小顶堆
     priority_queue<TreeNode*, vector<TreeNode*>, TreeNode> q;
-    // 把C放入Q中
+    // 把 tree 放入 q 中
     for (int i = 0; i < n; i++) {
         q.push(tree[i]);
     }
