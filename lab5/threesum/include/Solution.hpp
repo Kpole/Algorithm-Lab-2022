@@ -34,6 +34,6 @@ public:
         }
       }
     }
-    return res;
+    return {};
   }
 };
