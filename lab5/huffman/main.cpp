@@ -13,14 +13,7 @@ TreeNode* huffman(vector<TreeNode*>& tree) {
     }
 
     // 请注意，非叶子结点的 symbol 不需要赋值
-
-    while(q.size() >= 2) {
-        TreeNode *root = new TreeNode();
-        root->left = q.top(); q.pop();
-        root->right = q.top(); q.pop();
-        root->freq = root->left->freq + root->right->freq;
-        q.push(root);
-    }
+    // 请在这里完成你的代码
 
     return q.top();
 }

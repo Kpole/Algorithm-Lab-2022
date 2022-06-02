@@ -20,20 +20,6 @@ public:
   }
   
   vector<vector<int>> three_sum(vector<int>& A, vector<int>& B, vector<int> &C) {
-    vector<vector<int>> res;
-    sort(A.begin(), A.end());
-    sort(B.begin(), B.end());
-    for(int k = 0; k < C.size(); k++){
-      int i = 0, j = B.size() - 1;
-      while(i < A.size() && j >= 0) {
-        if(A[i] + B[j] > C[k]) j --;
-        else if(A[i] + B[j] < C[k]) i ++;
-        else {
-          res.push_back({A[i], B[j], C[k]});
-          i ++;
-        }
-      }
-    }
-    return res;
+    // 请在这里完成你的代码
   }
 };
