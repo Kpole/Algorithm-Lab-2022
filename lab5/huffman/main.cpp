@@ -1,118 +1,69 @@
 #include "util.hpp"
 
-#include <iostream>
-#include <queue>
-#include <string>
-using namespace std;
 
-struct TreeNode {
-    char symbol;       // 编码的字母
-    double freq;       // 对应的频率
-    TreeNode *left;    // 左孩子
-    TreeNode *right;   // 右孩子
-    // 构造函数
-    TreeNode()
-        : symbol('\0'), freq(0), left(NULL), right(NULL) {}
-    // 用symbol和freq构造
-    TreeNode(char symbol_, double freq_)
-        : symbol(symbol_), freq(freq_), left(NULL), right(NULL) {}
-    // 比较哪个节点的频率更高
-    bool operator()(const TreeNode* lhs, const TreeNode* rhs) {
-        return lhs->freq > rhs->freq;
-    }
-};
 
-TreeNode* Huffman(vector<TreeNode*>& C) {
-    int n = C.size();
-    // 创建一个最小堆
-    priority_queue<TreeNode*, vector<TreeNode*>, TreeNode> Q;
+
+TreeNode* huffman(vector<TreeNode*>& tree) {
+    int n = tree.size();
+    // 创建一个小顶堆
+    priority_queue<TreeNode*, vector<TreeNode*>, TreeNode> q;
     // 把C放入Q中
     for (int i = 0; i < n; i++) {
-        Q.push(C[i]);
+        q.push(tree[i]);
     }
-    int freq1=0;
-    int freq2=0;
-    int sumfreq=0;
-    char tempsymbol;
-    
-    while(Q.size()>=2) {
-        TreeNode *root1=new TreeNode();
-        freq1=Q.top()->freq;
-        root1->left=Q.top();
-        Q.pop();
-        freq2=Q.top()->freq;
-        root1->right=Q.top();
-        Q.pop();
-        sumfreq=freq1+freq2;
-        root1->freq=sumfreq;
-        root1->symbol=' ';
-        Q.push(root1);
+
+    // 请注意，非叶子结点的 symbol 不需要赋值
+
+    while(q.size() >= 2) {
+        TreeNode *root = new TreeNode();
+        root->left = q.top(); q.pop();
+        root->right = q.top(); q.pop();
+        root->freq = root->left->freq + root->right->freq;
+        q.push(root);
     }
-    // 请完成huffman编码的程序
-    return Q.top();
+
+    return q.top();
 }
 
-void OutputAllSymbolCode(TreeNode* root, string code = "") {
+/**
+ * @brief 销毁树结构
+ * 
+ * @param root 
+ */
+void destory(TreeNode* root) {
     if (root == NULL)
         return;
-    if (root->left == NULL && root->right == NULL) {
-        cout << root->symbol << ":" << code << endl;
-    }
-    if (root->left != NULL) {
-        OutputAllSymbolCode(root->left, code + '0');  // 左节点编码加0
-    }
-    if (root->right != NULL)
-    {
-        OutputAllSymbolCode(root->right, code + '1'); // 右节点编码加1
-    }
-}
-
-void printTree(TreeNode* root){
-    if (root == NULL)
-        return;
-    if (root->symbol!=' ') {
-        cout << root->symbol  << endl;
-    }
-    else{
-        cout<<root->freq<<endl;
-    }
-    if (root->left != NULL) {
-        printTree(root->left);  // 左节点编码加0
-    }
-    if (root->right != NULL)
-    {
-        printTree(root->right); // 右节点编码加1
-    }
-}
-// 销毁树
-void Destory(TreeNode* root) {
-    if (root == NULL)
-        return;
-    Destory(root->left);
-    Destory(root->right);
+    destory(root->left);
+    destory(root->right);
     delete root;
 }
 
-TreeNode* Huffman(string symbols, vector<double> freqs) {
-    vector<TreeNode *> C;
+/**
+ * @brief 对 symbols 中的字符，根据 freqs 中的频率构建哈夫曼树，返回树的根结点
+ * 
+ * @param symbols 
+ * @param freqs 
+ * @return TreeNode* 
+ */
+TreeNode* huffman(string symbols, vector<double> freqs) {
+    vector<TreeNode *> tree;
     for (size_t i = 0; i < freqs.size(); i++) {
-        C.push_back(new TreeNode(symbols[i], freqs[i]));
+        tree.push_back(new TreeNode(symbols[i], freqs[i]));
     }
-    return Huffman(C);
+    return huffman(tree);
 }
 
 int main() {
     string symbols = "ABCDEFGHIJKL";
     vector<double> freqs = { 10.1, 8, 18, 11.1, 6.6, 1.2, 4.4, 9.2, 13.5, 2.1, 10.3, 5.5 };
-    // string symbols = "abcde";
-    
-   //  vector<double> freqs = {1, 2, 3, 4, 5};
 
-    TreeNode *root = Huffman(symbols, freqs);
-    printTree(root);
-    OutputAllSymbolCode(root);
+    // 构建哈夫曼树
+    TreeNode *root = huffman(symbols, freqs);
+    // 打印哈夫曼树结构
+    print_tree(root);
+    // 输出每个字符的 Huffman 编码
+    out_symbol_code(root);
     
-    Destory(root);
-    Pause();
+    destory(root);
     return 0;
 }
