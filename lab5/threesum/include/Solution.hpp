@@ -2,15 +2,21 @@
 #include "util.hpp"
 #endif
 
-class Solution {
+class Solution
+{
 public:
-  vector<vector<int>> three_sum_brute_force(vector<int> A, vector<int> B, vector<int> C) {
+  vector<vector<int>> three_sum_brute_force(vector<int> A, vector<int> B, vector<int> C)
+  {
     vector<vector<int>> res;
-    for(int i = 0; i < A.size(); i++) {
-      for(int j = 0; j < B.size(); j++) {
-        for(int k = 0; k < C.size(); k++) {
-          if(C[k] == A[i] + B[j]) {
-            vector<int> temp={A[i], B[j], C[k]};
+    for (int i = 0; i < A.size(); i++)
+    {
+      for (int j = 0; j < B.size(); j++)
+      {
+        for (int k = 0; k < C.size(); k++)
+        {
+          if (C[k] == A[i] + B[j])
+          {
+            vector<int> temp = {A[i], B[j], C[k]};
             res.push_back(temp);
           }
         }
